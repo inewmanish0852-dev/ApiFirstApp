@@ -4,11 +4,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Traits\ResponseTrait;
+use App\Traits\ApiResponse;
 
 class GalleryController extends Controller
 {
-    use ResponseTrait;
+    use ApiResponse;
     public function index()
     {
         return $this->success('Gallery fetched successfully', [

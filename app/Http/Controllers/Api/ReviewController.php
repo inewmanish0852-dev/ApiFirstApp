@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Traits\ResponseTrait;
+use App\Traits\ApiResponse;
 
 class ReviewController extends Controller
 {
-    use ResponseTrait;
+    use ApiResponse;
     private function reviews(): array
     {
         return [

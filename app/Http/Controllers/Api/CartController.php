@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Traits\ResponseTrait;
+use App\Traits\ApiResponse;
 
 class CartController extends Controller
 {
-    use ResponseTrait;
+    use ApiResponse;
     // NOTE: In production, store cart in DB per user.
     // Using session-based static demo data here.
 

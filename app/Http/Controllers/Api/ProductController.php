@@ -4,11 +4,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Traits\ResponseTrait;
+use App\Traits\ApiResponse;
 
 class ProductController extends Controller
 {
-    use ResponseTrait;
+    use ApiResponse;
     private function products(): array
     {
         return [

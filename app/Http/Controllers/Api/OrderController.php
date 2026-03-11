@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Traits\ResponseTrait;
+use App\Traits\ApiResponse;
 
 class OrderController extends Controller
 {
-    use ResponseTrait;
+    use ApiResponse;
     private function orders(): array
     {
         return [

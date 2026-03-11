@@ -7,6 +7,12 @@ use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\ContactController;
 
+Route::get('/test', function () {
+    return response()->json([
+        'status' => 'API working'
+    ]);
+});
+
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 

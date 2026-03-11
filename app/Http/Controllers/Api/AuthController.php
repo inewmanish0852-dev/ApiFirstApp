@@ -44,17 +44,24 @@ class AuthController extends Controller
 
     public function user()
     {   
-        return $this->success(auth('api')->user());
+        $user = auth('api')->user();
+        $user->profile_image = "https://apifirstapp.onrender.com/".$user->profile_image;
+        return $this->success($user);
     }
 
     public function updateProfile(Request $request)
     {
         $user = auth('api')->user();
-        $user->update($request->all());
-        if($request->hasFile('profile_image')){
-            $user->profile_image = $request->file('profile_image')->store('profile_images');
+
+        $user->update($request->except('profile_image'));
+
+        if ($request->hasFile('profile_image')) {
+            $path = $request->file('profile_image')->store('profile_images', 'public');
+            $user->profile_image = $path;
         }
-        $user->save();  
+
+        $user->save();
+
         return $this->success($user, 'Profile Updated Successfully');
     }
 

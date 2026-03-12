@@ -25,19 +25,19 @@ class NotificationController extends Controller
         $all    = $this->notifications();
         $unread = collect($all)->where('read', false)->count();
 
-        return $this->success('Notifications fetched successfully', [
+        return $this->success([
             'notifications' => $all,
             'unread_count'  => $unread,
-        ]);
+        ], 'Notifications fetched successfully');
     }
 
     public function markRead($id)
     {
-        return $this->success('Marked as read', []);
+        return $this->success([], 'Marked as read');
     }
 
     public function markAllRead()
     {
-        return $this->success('All marked as read', []);
+        return $this->success([], 'All marked as read');
     }
 }

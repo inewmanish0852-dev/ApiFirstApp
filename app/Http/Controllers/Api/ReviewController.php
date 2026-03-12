@@ -26,11 +26,11 @@ class ReviewController extends Controller
         $reviews = collect($this->reviews())->where('product_id', (int)$productId)->values()->all();
         $avgRating = count($reviews) ? round(collect($reviews)->avg('rating'), 1) : 0;
 
-        return $this->success('Reviews fetched successfully', [
+        return $this->success([
             'reviews'    => $reviews,
             'total'      => count($reviews),
             'avg_rating' => $avgRating,
-        ]);
+        ], 'Reviews fetched successfully');
     }
 
     public function store(Request $request)
@@ -41,13 +41,13 @@ class ReviewController extends Controller
             'comment'    => 'required|string|min:10',
         ]);
 
-        return $this->success('Review submitted successfully!', [
+        return $this->success([
             'id'         => rand(100, 999),
             'product_id' => $request->product_id,
                 'rating'     => $request->rating,
                 'comment'    => $request->comment,
                 'date'       => now()->format('M d, Y'),
-            ],
+            ],'Review submitted successfully!',
         );
     }
 }

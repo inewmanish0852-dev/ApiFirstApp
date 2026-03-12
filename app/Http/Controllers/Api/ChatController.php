@@ -70,19 +70,19 @@ class ChatController extends Controller
             ],
         ];
 
-        return $this->success('Messages fetched successfully', $messages[(int)$id] ?? []);
+        return $this->success($messages[(int)$id] ?? [], 'Messages fetched successfully');
     }
 
     public function send(Request $request, $id)
     {
         $request->validate(['message' => 'required|string']);
 
-        return $this->success('Message sent successfully', [
+        return $this->success([
             'id'     => rand(100, 999),
             'sender' => 'me',
             'text'   => $request->message,
             'time'   => now()->format('h:i A'),
             'date'   => 'Today',
-        ]);
+        ], 'Message sent successfully');
     }
 }

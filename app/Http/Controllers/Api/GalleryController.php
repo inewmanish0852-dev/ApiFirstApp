@@ -11,7 +11,7 @@ class GalleryController extends Controller
     use ApiResponse;
     public function index()
     {
-        return $this->success('Gallery fetched successfully', [
+        return $this->success([
             ['id' => 1, 'title' => 'Wireless Headphones',  'category' => 'Products', 'image' => 'https://via.placeholder.com/400x400?text=Headphones'],
             ['id' => 2, 'title' => 'T-Shirt Collection',   'category' => 'Products', 'image' => 'https://via.placeholder.com/400x400?text=T-Shirt'],
             ['id' => 3, 'title' => 'Smartphone Pro Max',   'category' => 'Products', 'image' => 'https://via.placeholder.com/400x400?text=Smartphone'],
@@ -20,6 +20,6 @@ class GalleryController extends Controller
             ['id' => 6, 'title' => 'Our Office',           'category' => 'Team',     'image' => 'https://via.placeholder.com/400x400?text=Office'],
             ['id' => 7, 'title' => 'Team Meeting',         'category' => 'Team',     'image' => 'https://via.placeholder.com/400x400?text=Team'],
             ['id' => 8, 'title' => 'Warehouse',            'category' => 'Team',     'image' => 'https://via.placeholder.com/400x400?text=Warehouse'],
-        ]);
+        ], 'Gallery fetched successfully');
     }
 }

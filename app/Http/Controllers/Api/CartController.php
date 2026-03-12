@@ -56,13 +56,13 @@ class CartController extends Controller
         $delivery = $subtotal > 500 ? 0 : 99;
         $total    = $subtotal + $delivery;
 
-        return $this->success('Cart fetched successfully', [
+        return $this->success( [
             'items'    => $items,
             'count'    => count($items),
             'subtotal' => $subtotal,
                 'delivery' => $delivery,
                 'total'    => $total,
-            ],
+            ], 'Cart fetched successfully'
         );
     }
 
@@ -73,15 +73,11 @@ class CartController extends Controller
             'quantity'   => 'required|integer|min:1',
         ]);
 
-        return $this->success('Item added to cart',[
-            'status'  => true,
-            'message' => 'Item added to cart',
-            'data'    => [
-                'id'         => rand(10, 99),
-                'product_id' => $request->product_id,
-                'quantity'   => $request->quantity,
-            ],
-        ]);
+        return $this->success([
+            'id'         => rand(10, 99),
+            'product_id' => $request->product_id,
+            'quantity'   => $request->quantity,
+        ], 'Item added to cart');
     }
 
     public function update(Request $request)
@@ -91,25 +87,16 @@ class CartController extends Controller
             'quantity'     => 'required|integer|min:1',
         ]);
 
-        return $this->success('Cart updated',[
-            'status'  => true,
-            'message' => 'Cart updated',
-        ]);
+        return $this->success([], 'Cart updated');
     }
 
     public function remove($id)
     {
-        return $this->success('Item removed from cart',[
-            'status'  => true,
-            'message' => 'Item removed from cart',
-        ]);
+        return $this->success([], 'Item removed from cart');
     }
 
     public function clear()
     {
-        return $this->success('Cart cleared',[
-            'status'  => true,
-            'message' => 'Cart cleared',
-        ]);
+        return $this->success([], 'Cart cleared');
     }
 }

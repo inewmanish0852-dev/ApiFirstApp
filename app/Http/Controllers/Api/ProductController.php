@@ -130,7 +130,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        return $this->success('Products fetched successfully', $this->products());
+        return $this->success($this->products(), 'Products fetched successfully');
     }
 
     public function show($id)
@@ -139,7 +139,7 @@ class ProductController extends Controller
         if (!$product) {
             return $this->error('Product not found', 404);
         }
-        return $this->success('Product fetched successfully', $product);
+        return $this->success($product, 'Product fetched successfully');
     }
 
     public function byCategory($slug)
@@ -148,11 +148,11 @@ class ProductController extends Controller
             ? $this->products()
             : collect($this->products())->where('category_slug', $slug)->values()->all();
 
-        return $this->success('Products fetched successfully', $products);
+        return $this->success($products, 'Products fetched successfully');
     }
 
     public function categories()
     {
-        return $this->success('Categories fetched successfully', $this->getCategories());
+        return $this->success($this->getCategories(), 'Categories fetched successfully');
     }
 }

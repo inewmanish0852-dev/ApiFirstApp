@@ -92,17 +92,15 @@ class OrderController extends Controller
             'payment_method' => 'required|string',
         ]);
 
-        return $this->success('Order placed successfully!', [
-            'status'  => true,
-            'message' => 'Order placed successfully!',
-            'data'    => [
+        return $this->success(
+           [
                 'id'           => rand(100, 999),
                 'order_number' => 'ORD-2024-' . rand(100, 999),
                 'status'       => 'processing',
                 'total'        => $request->total ?? 0,
                 'placed_at'    => now()->toDateString(),
             ],
-        ]);
+            'Order placed successfully!', );
     }
 
     public function show($id)
@@ -111,7 +109,7 @@ class OrderController extends Controller
         if (!$order) {
             return $this->error('Order not found', 404);
         }
-        return $this->success('Order fetched successfully', $order);
+        return $this->success($order, 'Order fetched successfully');
     }
 
     public function invoice($id)
@@ -124,7 +122,7 @@ class OrderController extends Controller
         $subtotal = collect($order['items'])->sum(fn($i) => $i['price'] * $i['qty']);
         $delivery = $subtotal > 500 ? 0 : 99;
 
-        return $this->success('Invoice fetched successfully', [
+        return $this->success(
             [
                 'invoice_number' => 'INV-2024-' . str_pad($id, 3, '0', STR_PAD_LEFT),
                 'order_number'   => $order['order_number'],
@@ -135,7 +133,7 @@ class OrderController extends Controller
                 'delivery'       => $delivery,
                 'total'          => $subtotal + $delivery,
                 'address'        => $order['address'],
-            ],
-        ]);
+            ], 'Invoice fetched successfully'
+        );
     }
 }

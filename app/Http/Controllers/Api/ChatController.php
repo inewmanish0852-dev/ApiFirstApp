@@ -12,7 +12,7 @@ class ChatController extends Controller
     use ApiResponse;
     public function index()
     {
-        return $this->success('Chats fetched successfully', [
+        return $this->success(
             [
                 [
                     'id'           => 1,
@@ -44,8 +44,8 @@ class ChatController extends Controller
                     'unread'       => 0,
                     'online'       => true,
                 ],
-            ],
-        ]);
+            ],'Chats fetched successfully'
+        );
     }
 
     public function messages($id)

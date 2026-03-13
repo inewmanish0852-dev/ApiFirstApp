@@ -27,13 +27,39 @@ class User extends Authenticatable implements JWTSubject
         'phone',
         'city',
         'state',
-        'profile_image'
+        'profile_image',
+        'role'
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+
+    public function orders()        { return $this->hasMany(Order::class); }
+    public function cart()          { return $this->hasMany(Cart::class); }
+    public function reviews()       { return $this->hasMany(Review::class); }
+    public function chats()         { return $this->hasMany(Chat::class); }
+    public function notifications() { return $this->hasMany(Notification::class); }
+ 
+    // ── Helpers ───────────────────────────────────────────────────────────
+    // public function isAdmin(): bool
+    // {
+    //     return $this->role === '1';
+    // }
+ 
+    public function getInitialAttribute(): string
+    {
+        return strtoupper(substr($this->name, 0, 1));
+    }
+ 
+    public function getProfileImageUrlAttribute(): string
+    {
+        return $this->profile_image
+            ? asset('storage/' . $this->profile_image)
+            : 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=1A3C6E&color=fff';
+    }
 
     public function getJWTIdentifier()
     {
